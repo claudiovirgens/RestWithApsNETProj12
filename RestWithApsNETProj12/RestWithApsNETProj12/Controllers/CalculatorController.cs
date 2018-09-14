@@ -49,7 +49,7 @@ namespace RestWithApsNETProj12.Controllers
             return BadRequest("Invalid Input");
         }
 
-        // GET api/values/division/5/5
+        // GET api/values/multiplication/5/5
         [HttpGet("multiplication/{firstNumber}/{secondNumber}")]
         public IActionResult Multiplication(string firstNumber, string secondNumber)
         {
@@ -60,6 +60,33 @@ namespace RestWithApsNETProj12.Controllers
             }
             return BadRequest("Invalid Input");
         }
+
+
+        // GET api/values/mean/5/5
+        [HttpGet("mean/{firstNumber}/{secondNumber}")]
+        public IActionResult Mean(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                decimal mean = (ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber))/2;
+                return Ok(mean.ToString());
+            }
+            return BadRequest("Invalid Input");
+        }
+
+
+        // GET api/values/squareroot/5
+        [HttpGet("squareroot/{firstNumber}")]
+        public IActionResult SquareRoot(string number)
+        {
+            if (IsNumeric(number))
+            {
+                var squareroot = Math.Sqrt((double)ConvertToDecimal(number));
+                return Ok(squareroot.ToString());
+            }
+            return BadRequest("Invalid Input");
+        }
+
 
         private bool IsNumeric(string strNumber)
         {
