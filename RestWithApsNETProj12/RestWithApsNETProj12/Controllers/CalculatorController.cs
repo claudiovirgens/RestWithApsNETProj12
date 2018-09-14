@@ -13,12 +13,24 @@ namespace RestWithApsNETProj12.Controllers
        
 
         // GET api/values/5/5
-        [HttpGet("{firstNumber}/{secondNumber}")]
+        [HttpGet("sum/{firstNumber}/{secondNumber}")]
         public IActionResult Sum(string firstNumber,string secondNumber)
         {
             if(IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
                 decimal  sum = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+            return BadRequest("Invalid Input");
+        }
+
+        // GET api/values/5/5
+        [HttpGet("substraction/{firstNumber}/{secondNumber}")]
+        public IActionResult Substraction(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                decimal sum = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
                 return Ok(sum.ToString());
             }
             return BadRequest("Invalid Input");
